@@ -6,14 +6,14 @@ function [median, sigma, period1] = ft_2024_DE(response_choice,M_choice, M, T, r
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Input Variables
 % response_choice = a string with the requested quantity, e.g. 'PGAH'
-%                   select one of this:'PGAH','PGAV', 'PGVH','PGVV','PSAH',
-%                   'PSAV','PSVH','PSVV', 'SVH','SVV';
+%                   select one of this:'PGAH','PGAV', 'PGVH','PGVV','SPAH',
+%                   'SPAV','SPVH','SPVV', 'SVH','SVV';
 %                   
 % M_choice = a string with either 'MW' or 'ML' for model w.r.t to Moment
 %           Magnitude or Local Magntude respectively
 %
 % M = Magnitude
-% T = Period (sec); must be between 0.01 s and 1 s
+% T = Period (sec); must be between 0.01 s and 1 s; can be a row vector
 % rhyp = hypocentral distance (km)
 % region        = 0 for general (fixed effect)
 %               = 1 for INS
@@ -35,7 +35,7 @@ period = logspace(-2,0,15); % nat. periods in s
 N_period = length(period); % number of natural periods
 
 % List of quantities
-response_choices = {'PGAH','PGAV','PGVH','PGVV','PSAH','PSAV','PSVH','PSVV', 'SVH','SVV'};
+response_choices = {'PGAH','PGAV','PGVH','PGVV','SPAH','SPAV','SPVH','SPVV', 'SVH','SVV'};
 
 % Original units of the regression coefficients
 % stored in R
@@ -47,7 +47,7 @@ units2 = {'g','g','m/s','m/s','g','g','m/s','m/s','m/s','m/s' };
 % Check if the chosen quantity matches the possible choices
 response_index = find(ismember(response_choices,response_choice));
 if isempty(response_index)
-    error('No matching quantity. Choices are: PGAH,PGAV,PGVH,PGV,PSAH,PSAV,PSVH,PSVV', 'SVH','SVV')
+    error('No matching quantity. Choices are: PGAH,PGAV,PGVH,PGVV,SPAH,SPAV,SVPH,SPVV,SVH,SVV')
 end
 
 % If chosen quantity matches --> store the name and units
@@ -84,7 +84,7 @@ I = region;
            % Printout to file
             %sprintf('%14.8f ,',real(SVV_sort))
     
-       case {'PSAH','PSAV','PSVH','PSVV', 'SVH','SVV'}
+       case {'SPAH','SPAV','SPVH','SPVV', 'SVH','SVV'}
            % Spectral quantity
 
             % Discharge T-values outside from the range of application
