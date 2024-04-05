@@ -31,9 +31,14 @@ period1: Natural periods in seconds.
 
 Example
 % Load coefficients
+
 load R
+
 % Calculate median and sigma for PGAH
+
 [median, sigma, period1] = ft_2024_DE('PGAH', 'MW', 2, 0.1, 5, 1);
+
+
 Note
 Ensure that the necessary coefficients are loaded before calling this function.
 
