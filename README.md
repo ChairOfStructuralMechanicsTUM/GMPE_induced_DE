@@ -6,7 +6,7 @@ matlab
 
 [median, sigma, period1] = ft_2024_DE(response_choice, M_choice, M, T, rhyp, region)
 Description
-response_choice: A string with the requested quantity. Choose from: 'PGAH', 'PGAV', 'PGVH', 'PGVV', 'PSAH', 'PSAV', 'PSVH', 'PSVV', 'SVH', 'SVV'.
+response_choice: A string with the requested quantity. Choose from: 'PGAH', 'PGAV', 'PGVH', 'PGVV', 'SPAH', 'SPAV', 'SPVH', 'SPVV', 'SVH', 'SVV'.
 
 M_choice: A string with either 'MW' or 'ML' for the model with respect to Moment Magnitude or Local Magnitude, respectively.
 
